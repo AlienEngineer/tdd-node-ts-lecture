@@ -3,12 +3,13 @@
 Implement an API that get vehicles from a another service. This service could be a database or something else.
 
 ### Sequence Diagram
+
+#### Get Vehicles
 ![sequence diagram](docs/get-vehicles/sequence_diagram.png)
+#### Get Vehicle
+![sequence diagram](docs/get-vehicle/sequence_diagram.png)
+#### Buy Vehicle
+![sequence diagram](docs/buy-vehicle/sequence_diagram.png)
 
 ### Class Diagram
-
-### Part 1
-![class diagram](docs/get-vehicles/1_class_diagram.png)
-
-### Part 2
-![class diagram](docs/get-vehicles/2_class_diagram.png)
+![class diagram](docs/buy-vehicle/class_diagram.png)
