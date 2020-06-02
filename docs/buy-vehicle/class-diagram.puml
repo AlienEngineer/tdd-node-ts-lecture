@@ -1,0 +1,82 @@
+@startuml
+
+class Vehicle {
+    vehicleId: string
+    model: string
+    yearOfConstruction: number
+}
+
+class BuyResult {
+    ownerId: string
+    failedReason: string
+}
+
+class VehicleModel {
+    vehicleId: string
+    model: string
+    dateOfConstruction: date
+}
+
+enum SecurityCheckState {
+  AUTHORIZED
+  UNSAFE
+  REMOVED
+}
+
+class CheckResult {
+    userId: string
+    state: SecurityCheckState
+}
+
+class VehicleServices {
+    getVehicles(userId: string): Vehicle[]
+    getVehicle(userId: string, vehicleId: string): Vehicle
+    buyVehicle(userId: string, vehicleId: string): BuyResult
+}
+
+class SecurityGateway {
+    checkUser(userId: string): CheckResult
+}
+
+class VehicleGateway {
+    getVehicles(userId: string): VehicleModel[]
+    getVehicle(userId: string, vehicleId: string): VehicleModel
+    buyVehicle(userId: string, vehicleId: string): VehicleModel
+}
+
+class VehiclesController {
+    getVehicles(userId: string): Vehicle[]
+    getVehicle(userId: string, vehicleId: string): Vehicle
+    buyVehicle(userId: string, vehicleId: string): BuyResult
+}
+
+VehicleServices o--> SecurityGateway
+VehicleServices o--> VehicleGateway
+VehiclesController o--> VehicleServices
+
+SecurityGateway --> CheckResult : returns
+CheckResult *-> SecurityCheckState : state
+
+VehicleServices -> BuyResult: returns
+VehicleModel <- VehicleGateway: returns
+
+Vehicle <- VehicleServices : returns
+
+hide fields
+
+show Vehicle fields
+hide Vehicle methods
+
+show BuyResult fields
+hide BuyResult methods
+
+show SecurityCheckState fields
+hide SecurityCheckState methods
+
+show CheckResult fields
+hide CheckResult methods
+
+show VehicleModel fields
+hide VehicleModel methods
+
+@enduml
