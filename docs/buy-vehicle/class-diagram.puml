@@ -6,11 +6,6 @@ class Vehicle {
     yearOfConstruction: number
 }
 
-class BuyResult {
-    ownerId: string
-    failedReason: string
-}
-
 class VehicleModel {
     vehicleId: string
     model: string
@@ -31,7 +26,7 @@ class CheckResult {
 class VehicleServices {
     getVehicles(userId: string): Vehicle[]
     getVehicle(userId: string, vehicleId: string): Vehicle
-    buyVehicle(userId: string, vehicleId: string): BuyResult
+    buyVehicle(userId: string, vehicleId: string): void
 }
 
 class SecurityGateway {
@@ -41,13 +36,13 @@ class SecurityGateway {
 class VehicleGateway {
     getVehicles(userId: string): VehicleModel[]
     getVehicle(userId: string, vehicleId: string): VehicleModel
-    buyVehicle(userId: string, vehicleId: string): VehicleModel
+    buyVehicle(userId: string, vehicleId: string): void
 }
 
 class VehiclesController {
     getVehicles(userId: string): Vehicle[]
     getVehicle(userId: string, vehicleId: string): Vehicle
-    buyVehicle(userId: string, vehicleId: string): BuyResult
+    buyVehicle(userId: string, vehicleId: string): void
 }
 
 VehicleServices o--> SecurityGateway
@@ -57,7 +52,6 @@ VehiclesController o--> VehicleServices
 SecurityGateway --> CheckResult : returns
 CheckResult *-> SecurityCheckState : state
 
-VehicleServices -> BuyResult: returns
 VehicleModel <- VehicleGateway: returns
 
 Vehicle <- VehicleServices : returns
@@ -66,9 +60,6 @@ hide fields
 
 show Vehicle fields
 hide Vehicle methods
-
-show BuyResult fields
-hide BuyResult methods
 
 show SecurityCheckState fields
 hide SecurityCheckState methods

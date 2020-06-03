@@ -5,9 +5,7 @@ export class VehicleGateway {
   getVehicle(userId: string, vehicleId: string): VehicleModel {
     return undefined;
   }
-  buyVehicle(userId: string, vehicleId: string): VehicleModel {
-    return undefined;
-  }
+  buyVehicle(userId: string, vehicleId: string): void {}
 }
 
 export class VehicleModel {

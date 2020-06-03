@@ -10,7 +10,7 @@ deactivate Security
 
 API -> Repository: POST api/repository/vehicles/{user_id}/store\nBody: VehicleInternalModel
 activate Repository
-API <-- Repository: VehicleModel
+API <-- Repository: 201: Created
 deactivate Repository
 
 Client <-- API: BuyResult
