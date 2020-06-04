@@ -1,18 +1,33 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { BuyResult, Vehicle, VehicleServices } from '../services';
+import {
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
+import { Vehicle, VehicleServices } from '../services';
+import { GatewayException } from '../gateways';
 
 @Controller()
 export class VehiclesController {
   constructor(private readonly appService: VehicleServices) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
-  @Get()
   getVehicles(userId: string): Vehicle[] {
-    return undefined;
+    if (userId === undefined) {
+      throw new HttpException('missing user id', HttpStatus.BAD_REQUEST);
+    }
+    try {
+      return this.appService.getVehicles(userId);
+    } catch (e) {
+      if (e instanceof GatewayException) {
+        throw new HttpException(
+          'unable to get the vehicles',
+          HttpStatus.FAILED_DEPENDENCY,
+        );
+      }
+      throw e;
+    }
   }
 
   @Get()
@@ -21,7 +36,7 @@ export class VehiclesController {
   }
 
   @Post()
-  buyVehicle(userId: string, vehicleId: string): BuyResult {
+  buyVehicle(userId: string, vehicleId: string): void {
     return undefined;
   }
 }
