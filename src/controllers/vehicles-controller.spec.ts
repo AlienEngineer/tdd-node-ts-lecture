@@ -12,14 +12,4 @@ describe('AppController', () => {
   function makeController(): VehiclesController {
     return app.get<VehiclesController>(VehiclesController);
   }
-
-  describe('getHello', () => {
-    it('should return "Hello World!"', () => {
-      const appController = makeController();
-
-      const result = appController.getHello();
-
-      expect(result).toBe('Hello World!');
-    });
-  });
 });
