@@ -7,6 +7,7 @@ export const appModuleMetadata = {
   imports: [],
   controllers: [VehiclesController],
   providers: [VehicleServices, VehicleGateway, SecurityGateway],
+  exports: [VehicleGateway],
 };
 
 @Module(appModuleMetadata)

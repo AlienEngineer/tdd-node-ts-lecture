@@ -1,9 +1,28 @@
+import { VehicleGateway, VehicleModel } from '../gateways';
+
 export class VehicleServices {
-  getHello(): string {
-    return 'Hello World!';
-  }
+  constructor(private readonly gateway: VehicleGateway) {}
+
   getVehicles(userId: string): Vehicle[] {
-    return undefined;
+    return this.gateway
+      .getVehicles(userId)
+      .filter(this.undefinedModels)
+      .map(this.mapModelToVehicle);
+  }
+
+  undefinedModels(model: VehicleModel) {
+    return model !== undefined;
+  }
+
+  mapModelToVehicle(model: VehicleModel) {
+    return {
+      yearOfConstruction:
+        model.dateOfConstruction == null
+          ? undefined
+          : model.dateOfConstruction.getFullYear(),
+      model: model.model,
+      vehicleId: model.vehicleId,
+    } as Vehicle;
   }
 }
 export class Vehicle {

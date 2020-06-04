@@ -6,7 +6,7 @@ import { Vehicle, VehicleServices } from '../services';
 import { instance, mock, when } from 'ts-mockito';
 import { GatewayException } from '../gateways';
 
-describe('AppController', () => {
+describe('VehiclesController', () => {
   let app: TestingModule;
 
   function makeVehicleServices(): VehicleServices {
@@ -39,7 +39,7 @@ describe('AppController', () => {
   });
 
   function makeController(): VehiclesController {
-    return app.get<VehiclesController>(VehiclesController);
+    return app.get(VehiclesController);
   }
 
   describe('getVehicles', () => {
