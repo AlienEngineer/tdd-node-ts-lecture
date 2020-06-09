@@ -1,9 +1,6 @@
-## PART 1
+## Introduction
 
-Implement an API that get vehicles from a another service. This service could be a database or something else.
+### Game of Life
 
-### Sequence Diagram
-![sequence diagram](docs/get-vehicles/sequence_diagram.png)
-
-### Class Diagram
-![class diagram](docs/get-vehicles/1_class_diagram.png)
+- [wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
+- [youtube](https://www.youtube.com/watch?v=C2vgICfQawE)
