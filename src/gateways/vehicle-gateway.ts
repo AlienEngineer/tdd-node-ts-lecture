@@ -9,3 +9,8 @@ export class VehicleModel {
   model: string;
   dateOfConstruction: Date;
 }
+
+export class UnknownUserGatewayException implements Error {
+  message: string;
+  name: string;
+}
